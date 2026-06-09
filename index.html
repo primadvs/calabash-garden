@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Calabash Garden. Private Social Club, Port of Spain.</title>
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim: rgba(201,168,76,0.2);
+  --bg-deep: #050a05;
+  --bg-dark: #0a120a;
+  --bg-mid: #0e170e;
+  --text-light: #f0ece0;
+  --text-muted: #9a9080;
+  --green-deep: #0d1a0d;
+  --serif: 'Georgia','Times New Roman',serif;
+  --sans: 'Arial','Helvetica',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-deep);color:var(--text-light);font-family:var(--sans);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:22px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(5,10,5,0.95),transparent);
+}
+.nav-brand{font-family:var(--serif);font-size:.95rem;color:var(--gold);letter-spacing:.12em;}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-apply{color:var(--bg-deep)!important;background:var(--gold);padding:8px 18px;}
+.nav-apply:hover{background:var(--gold-light);color:var(--bg-deep)!important;}
+
+/* HERO */
+#hero{
+  position:relative;width:100%;height:100vh;min-height:600px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,#0e1f0e 0%,#050a05 65%);
+}
+.light-shaft{
+  position:absolute;top:0;
+  width:120px;height:100%;
+  background:linear-gradient(to bottom,rgba(201,168,76,.07) 0%,transparent 60%);
+  transform-origin:top center;border-radius:50%;
+}
+.ls1{left:18%;animation:shaft 9s ease-in-out infinite;}
+.ls2{left:38%;width:80px;animation:shaft 12s ease-in-out infinite 2s;}
+.ls3{left:56%;animation:shaft 8s ease-in-out infinite 4s;}
+.ls4{left:75%;width:90px;animation:shaft 11s ease-in-out infinite 1s;}
+@keyframes shaft{0%,100%{opacity:.5;transform:scaleX(1) skewX(-2deg);}50%{opacity:.9;transform:scaleX(1.4) skewX(2deg);}}
+.canopy-wrap{position:absolute;top:0;left:0;right:0;pointer-events:none;height:100%;}
+.branch{position:absolute;top:0;transform-origin:top center;}
+.b-left{left:-2%;}
+.b-left2{left:10%;}
+.b-center{left:50%;transform:translateX(-50%);}
+.b-right2{right:10%;}
+.b-right{right:-2%;}
+.b-left  {animation:sway-l 8s ease-in-out infinite;}
+.b-left2 {animation:sway-l 10s ease-in-out infinite 1.5s;}
+.b-center{animation:sway-c 13s ease-in-out infinite .5s;}
+.b-right2{animation:sway-r 9s ease-in-out infinite 2s;}
+.b-right {animation:sway-r 11s ease-in-out infinite;}
+@keyframes sway-l{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(1.5deg) translateX(12px);}}
+@keyframes sway-r{0%,100%{transform:rotate(3deg);}50%{transform:rotate(-1.5deg) translateX(-12px);}}
+@keyframes sway-c{0%,100%{transform:translateX(-50%) rotate(-1.5deg);}50%{transform:translateX(calc(-50% + 8px)) rotate(1.5deg);}}
+.hero-inner{position:relative;z-index:10;text-align:center;padding:20px;}
+.hero-kicker{font-size:.6rem;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:22px;}
+.hero-title{font-family:var(--serif);font-size:clamp(2.6rem,7vw,5.8rem);font-weight:400;color:var(--text-light);line-height:1.08;letter-spacing:.04em;text-shadow:0 0 80px rgba(201,168,76,.35),0 2px 30px rgba(0,0,0,.9);margin-bottom:6px;}
+.hero-title em{color:var(--gold);font-style:normal;}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(.8rem,1.8vw,1.05rem);color:var(--gold);letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px;opacity:.85;}
+.hero-loc{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:44px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:13px 34px;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .3s;}
+.btn-gold{background:transparent;border:1px solid var(--gold);color:var(--gold);}
+.btn-gold:hover{background:var(--gold);color:var(--bg-deep);}
+.btn-solid{background:var(--gold);border:1px solid var(--gold);color:var(--bg-deep);}
+.btn-solid:hover{background:var(--gold-light);border-color:var(--gold-light);}
+.btn-outline{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text-muted);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;}
+.scroll-cue::after{content:'';display:block;width:1px;height:38px;background:linear-gradient(to bottom,var(--gold),transparent);}
+@keyframes bob{0%,100%{opacity:.35;transform:translateX(-50%) translateY(0);}50%{opacity:.7;transform:translateX(-50%) translateY(6px);}}
+
+/* RULE */
+.rule{border:none;border-top:1px solid rgba(201,168,76,.12);margin:0 48px;}
+.gold-rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 40px;max-width:300px;}
+.gold-rule::before,.gold-rule::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold));}
+.gold-rule::after{background:linear-gradient(to left,transparent,var(--gold));}
+.gold-rule span{color:var(--gold);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;white-space:nowrap;}
+
+/* SECTIONS */
+.section{max-width:1080px;margin:0 auto;padding:90px 48px;}
+.section-dark{background:var(--bg-mid);padding:90px 0;}
+.section-dark .section{padding-top:0;padding-bottom:0;}
+.sec-label{font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8;}
+h2{font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:400;color:var(--text-light);margin-bottom:14px;line-height:1.25;}
+h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--text-light);margin-bottom:10px;}
+h4{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--text-light);margin-bottom:8px;}
+p{color:var(--text-muted);line-height:1.85;font-size:.88rem;margin-bottom:14px;}
+p:last-child{margin-bottom:0;}
+.intro{max-width:660px;margin:0 auto;text-align:center;}
+
+/* OVERVIEW */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-top:56px;}
+.pillar{padding:36px 28px;border:1px solid rgba(201,168,76,.15);background:rgba(255,255,255,.01);text-align:center;transition:border-color .3s;}
+.pillar:hover{border-color:rgba(201,168,76,.4);}
+.pillar-icon{font-size:1.6rem;margin-bottom:14px;}
+.pillar h4{font-size:.85rem;letter-spacing:.12em;margin-bottom:8px;}
+.pillar p{font-size:.78rem;margin:0;}
+
+/* MEMBERSHIP CARD OPTIONS */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:52px;}
+@media(max-width:768px){.cards-grid{grid-template-columns:1fr;}.nav-links{display:none;}}
+.m-card{border:1px solid rgba(201,168,76,.2);padding:36px 32px;background:rgba(255,255,255,.015);position:relative;transition:border-color .3s;}
+.m-card:hover{border-color:rgba(201,168,76,.45);}
+.m-card-num{position:absolute;top:20px;right:24px;font-family:var(--serif);font-size:2.8rem;color:rgba(201,168,76,.1);line-height:1;}
+.m-badge{display:inline-block;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;background:var(--gold);color:var(--bg-deep);padding:4px 12px;margin-bottom:18px;}
+.m-card h3{margin-bottom:8px;}
+.m-card .tagline{font-style:italic;font-family:var(--serif);font-size:.82rem;color:var(--gold);margin-bottom:18px;}
+.pc-list{list-style:none;padding:0;margin-top:12px;}
+.pc-list li{font-size:.82rem;color:var(--text-muted);padding:7px 0 7px 20px;border-bottom:1px solid rgba(255,255,255,.04);position:relative;line-height:1.5;}
+.pc-list li:last-child{border-bottom:none;}
+.pc-list li::before{position:absolute;left:0;top:7px;}
+.pro-item::before{content:'+';color:#7ab87a;}
+.con-item::before{content:'-';color:#c47a7a;}
+.pc-heading{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;margin-top:20px;margin-bottom:4px;}
+.pc-heading.pro{color:#7ab87a;}
+.pc-heading.con{color:#c47a7a;}
+.risk-box{margin-top:20px;padding:16px 18px;background:rgba(201,168,76,.05);border-left:2px solid var(--gold);font-size:.78rem;color:var(--text-muted);line-height:1.65;}
+.risk-box strong{color:var(--text-light);}
+
+/* COMPARISON TABLE */
+.table-wrap{overflow-x:auto;margin-top:52px;}
+table{width:100%;border-collapse:collapse;font-size:.82rem;}
+thead th{padding:16px 18px;border-bottom:1px solid rgba(201,168,76,.4);font-weight:400;text-align:left;}
+thead th:first-child{font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted);}
+thead th:nth-child(2){font-family:var(--serif);font-size:1rem;color:var(--gold);}
+thead th:nth-child(3){font-family:var(--serif);font-size:1rem;color:#8ab8d0;}
+tbody tr:hover td{background:rgba(255,255,255,.02);}
+tbody td{padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-muted);vertical-align:top;line-height:1.55;}
+tbody td:first-child{color:var(--text-light);font-size:.8rem;letter-spacing:.04em;}
+.g{color:#7ab87a;font-size:.78rem;}
+.r{color:#c47a7a;font-size:.78rem;}
+.a{color:var(--gold);font-size:.78rem;}
+
+/* VERDICT */
+.verdict{margin-top:48px;padding:40px 44px;border:1px solid var(--gold);background:rgba(201,168,76,.03);text-align:center;}
+.verdict .v-label{font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.verdict h3{color:var(--gold);margin-bottom:16px;}
+.verdict p{max-width:720px;margin:0 auto;font-size:.88rem;line-height:1.85;}
+
+/* POS */
+.pos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:52px;}
+.pos-card{border:1px solid rgba(201,168,76,.18);padding:26px 24px;background:rgba(255,255,255,.01);position:relative;transition:all .3s;}
+.pos-card:hover{border-color:rgba(201,168,76,.4);background:rgba(255,255,255,.025);}
+.pos-rec{position:absolute;top:-1px;left:20px;background:var(--gold);color:var(--bg-deep);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;padding:3px 10px;}
+.pos-name{font-family:var(--serif);font-size:1.25rem;color:var(--text-light);margin-bottom:4px;margin-top:8px;}
+.pos-stars{display:flex;gap:2px;margin-bottom:12px;}
+.pos-stars span{font-size:.7rem;color:var(--gold);}
+.pos-stars span.e{color:rgba(201,168,76,.25);}
+.pos-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;}
+.ptag{font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(201,168,76,.3);color:var(--gold);}
+.ptag.green{border-color:rgba(122,184,122,.4);color:#7ab87a;}
+.ptag.blue{border-color:rgba(138,184,208,.4);color:#8ab8d0;}
+
+/* SECURITY */
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:44px;}
+.sec-item{padding:24px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.01);transition:border-color .3s;}
+.sec-item:hover{border-color:rgba(201,168,76,.3);}
+.sec-icon{font-size:1.4rem;margin-bottom:12px;}
+.sec-item h4{font-size:.85rem;margin-bottom:8px;}
+.sec-item p{font-size:.77rem;margin:0;line-height:1.65;}
+
+/* MEMBER CARD VISUAL */
+.card-preview{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:52px;}
+.physical-card{width:320px;height:200px;border-radius:12px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px rgba(201,168,76,.3);}
+.bamboo-card{background:linear-gradient(135deg,#2a1f0a 0%,#3d2f12 30%,#2e2410 60%,#1e1508 100%);}
+.bamboo-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 18px,rgba(201,168,76,.06) 18px,rgba(201,168,76,.06) 19px);}
+.rfid-card{background:linear-gradient(135deg,#0a1a0a 0%,#142214 40%,#0d1a0d 100%);}
+.rfid-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08) 0%,transparent 60%);}
+.card-club{font-family:var(--serif);font-size:.75rem;letter-spacing:.15em;color:var(--gold);opacity:.9;position:relative;z-index:1;}
+.card-name{font-family:var(--serif);font-size:1.1rem;color:var(--text-light);position:relative;z-index:1;}
+.card-bottom{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1;}
+.card-type{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);}
+.card-chip{width:28px;height:20px;border-radius:3px;background:linear-gradient(135deg,var(--gold),#a88030);opacity:.7;}
+.rfid-symbol{font-size:1.2rem;color:var(--gold);opacity:.6;}
+.card-label{text-align:center;margin-top:14px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);}
+
+/* APPLY FORM */
+#apply{background:radial-gradient(ellipse 70% 60% at 50% 0%,#0e1f0e 0%,var(--bg-deep) 60%);}
+.apply-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;margin-top:52px;align-items:start;text-align:left;}
+@media(max-width:820px){.apply-wrap{grid-template-columns:1fr;gap:40px;}}
+.apply-points{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+.apply-points li{font-size:.8rem;color:var(--text-muted);display:flex;gap:12px;align-items:flex-start;line-height:1.6;}
+.apply-points li::before{content:'';width:6px;height:6px;margin-top:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+.form-card{border:1px solid rgba(201,168,76,.25);background:rgba(255,255,255,.015);padding:38px 34px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media(max-width:520px){.form-row{grid-template-columns:1fr;}}
+.field{margin-bottom:18px;display:flex;flex-direction:column;}
+.field label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.field input,.field select,.field textarea{background:rgba(5,10,5,.6);border:1px solid rgba(201,168,76,.22);color:var(--text-light);padding:12px 14px;font-family:var(--sans);font-size:.85rem;transition:border-color .2s;width:100%;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);}
+.field textarea{resize:vertical;min-height:88px;}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;}
+.form-note{font-size:.66rem;color:var(--text-muted);margin:4px 0 16px;line-height:1.6;}
+.form-submit{width:100%;}
+.form-success{display:none;border:1px solid var(--gold);background:rgba(201,168,76,.05);padding:34px 32px;text-align:center;}
+.form-success.show{display:block;}
+.form-success .check{font-size:2rem;color:var(--gold);margin-bottom:12px;}
+.form-success h3{color:var(--gold);margin-bottom:8px;}
+.form-success p{font-size:.82rem;}
+.form-success a{color:var(--gold);}
+.err{border-color:#c47a7a !important;}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(201,168,76,.12);padding:50px 48px;text-align:center;}
+.foot-brand{font-family:var(--serif);font-size:1.3rem;color:var(--gold);margin-bottom:10px;letter-spacing:.08em;}
+footer p{font-size:.72rem;line-height:1.7;max-width:500px;margin:0 auto;}
+.foot-links{display:flex;gap:24px;justify-content:center;list-style:none;margin-top:28px;flex-wrap:wrap;}
+.foot-links a{color:var(--text-muted);text-decoration:none;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;transition:color .2s;}
+.foot-links a:hover{color:var(--gold);}
+
+.fi{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease;}
+.fi.show{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">The Calabash Garden</span>
+  <ul class="nav-links">
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#pos">Systems</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#apply" class="nav-apply">Apply</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="light-shaft ls1"></div>
+  <div class="light-shaft ls2"></div>
+  <div class="light-shaft ls3"></div>
+  <div class="light-shaft ls4"></div>
+
+  <div class="canopy-wrap">
+    <svg class="branch b-left" width="340" height="480" viewBox="0 0 340 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-20 0 Q40 60 20 150 Q0 240 60 280" stroke="#1a3a1a" stroke-width="6" fill="none"/>
+      <path d="M20 50 Q80 80 120 40 Q160 0 200 30" stroke="#152e15" stroke-width="5" fill="none"/>
+      <ellipse cx="80" cy="55" rx="60" ry="28" fill="#0e2a0e" transform="rotate(-15 80 55)"/>
+      <ellipse cx="130" cy="38" rx="55" ry="22" fill="#112d11" transform="rotate(-30 130 38)"/>
+      <ellipse cx="190" cy="28" rx="48" ry="20" fill="#0d270d" transform="rotate(-10 190 28)"/>
+      <ellipse cx="55" cy="100" rx="70" ry="30" fill="#0f2e0f" transform="rotate(10 55 100)"/>
+      <ellipse cx="30" cy="160" rx="65" ry="25" fill="#102e10"/>
+      <circle cx="110" cy="130" r="14" fill="#1a2e0a" stroke="#2a4a12" stroke-width="1.5"/>
+      <circle cx="168" cy="70" r="11" fill="#162808" stroke="#253d10" stroke-width="1"/>
+      <ellipse cx="230" cy="45" rx="38" ry="15" fill="#0e2a0e" transform="rotate(-20 230 45)"/>
+      <ellipse cx="280" cy="30" rx="42" ry="16" fill="#102c10" transform="rotate(-35 280 30)"/>
+      <ellipse cx="310" cy="15" rx="35" ry="13" fill="#0c250c" transform="rotate(-45 310 15)"/>
+    </svg>
+    <svg class="branch b-left2" width="260" height="380" viewBox="0 0 260 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 0 Q80 80 50 160 Q30 200 70 250" stroke="#152e15" stroke-width="5" fill="none"/>
+      <path d="M60 40 Q120 60 160 20 Q200 -10 240 15" stroke="#112a11" stroke-width="4" fill="none"/>
+      <ellipse cx="100" cy="48" rx="50" ry="22" fill="#0f2c0f" transform="rotate(-20 100 48)"/>
+      <ellipse cx="155" cy="28" rx="52" ry="19" fill="#112e11" transform="rotate(-40 155 28)"/>
+      <ellipse cx="210" cy="14" rx="40" ry="16" fill="#0d280d" transform="rotate(-50 210 14)"/>
+      <ellipse cx="65" cy="110" rx="58" ry="24" fill="#102e10" transform="rotate(5 65 110)"/>
+      <circle cx="80" cy="88" r="12" fill="#1a2e0a" stroke="#253d10" stroke-width="1.5"/>
+      <ellipse cx="40" cy="165" rx="50" ry="20" fill="#0e2b0e"/>
+    </svg>
+    <svg class="branch b-center" width="400" height="320" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 0 Q180 80 200 140" stroke="#1a3a1a" stroke-width="7" fill="none"/>
+      <path d="M200 30 Q130 60 80 20 Q40 -10 10 20" stroke="#152e15" stroke-width="4" fill="none"/>
+      <path d="M200 30 Q270 60 320 20 Q360 -10 390 20" stroke="#152e15" stroke-width="4" fill="none"/>
+      <ellipse cx="140" cy="40" rx="70" ry="28" fill="#102e10" transform="rotate(15 140 40)"/>
+      <ellipse cx="70" cy="25" rx="58" ry="22" fill="#0e2a0e" transform="rotate(5 70 25)"/>
+      <ellipse cx="20" cy="18" rx="40" ry="16" fill="#0c270c"/>
+      <ellipse cx="260" cy="40" rx="70" ry="28" fill="#112e11" transform="rotate(-15 260 40)"/>
+      <ellipse cx="330" cy="25" rx="58" ry="22" fill="#0f2c0f" transform="rotate(-5 330 25)"/>
+      <ellipse cx="385" cy="18" rx="40" ry="16" fill="#0c270c"/>
+      <ellipse cx="200" cy="20" rx="80" ry="32" fill="#0f2e0f"/>
+      <ellipse cx="200" cy="8" rx="65" ry="22" fill="#102c10"/>
+      <circle cx="150" cy="70" r="16" fill="#18280a" stroke="#2a4010" stroke-width="1.5"/>
+      <circle cx="250" cy="68" r="14" fill="#1a2e0a" stroke="#253d10" stroke-width="1"/>
+      <circle cx="200" cy="85" r="18" fill="#162508" stroke="#2a3e0e" stroke-width="2"/>
+    </svg>
+    <svg class="branch b-right2" width="260" height="380" viewBox="0 0 260 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 0 Q180 80 210 160 Q230 200 190 250" stroke="#152e15" stroke-width="5" fill="none"/>
+      <path d="M200 40 Q140 60 100 20 Q60 -10 20 15" stroke="#112a11" stroke-width="4" fill="none"/>
+      <ellipse cx="160" cy="48" rx="50" ry="22" fill="#0f2c0f" transform="rotate(20 160 48)"/>
+      <ellipse cx="105" cy="28" rx="52" ry="19" fill="#112e11" transform="rotate(40 105 28)"/>
+      <ellipse cx="50" cy="14" rx="40" ry="16" fill="#0d280d" transform="rotate(50 50 14)"/>
+      <ellipse cx="195" cy="110" rx="58" ry="24" fill="#102e10" transform="rotate(-5 195 110)"/>
+      <circle cx="180" cy="88" r="12" fill="#1a2e0a" stroke="#253d10" stroke-width="1.5"/>
+      <ellipse cx="220" cy="165" rx="50" ry="20" fill="#0e2b0e"/>
+    </svg>
+    <svg class="branch b-right" width="340" height="480" viewBox="0 0 340 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M360 0 Q300 60 320 150 Q340 240 280 280" stroke="#1a3a1a" stroke-width="6" fill="none"/>
+      <path d="M320 50 Q260 80 220 40 Q180 0 140 30" stroke="#152e15" stroke-width="5" fill="none"/>
+      <ellipse cx="260" cy="55" rx="60" ry="28" fill="#0e2a0e" transform="rotate(15 260 55)"/>
+      <ellipse cx="210" cy="38" rx="55" ry="22" fill="#112d11" transform="rotate(30 210 38)"/>
+      <ellipse cx="150" cy="28" rx="48" ry="20" fill="#0d270d" transform="rotate(10 150 28)"/>
+      <ellipse cx="285" cy="100" rx="70" ry="30" fill="#0f2e0f" transform="rotate(-10 285 100)"/>
+      <ellipse cx="310" cy="160" rx="65" ry="25" fill="#102e10"/>
+      <circle cx="230" cy="130" r="14" fill="#1a2e0a" stroke="#2a4a12" stroke-width="1.5"/>
+      <circle cx="172" cy="70" r="11" fill="#162808" stroke="#253d10" stroke-width="1"/>
+      <ellipse cx="110" cy="45" rx="38" ry="15" fill="#0e2a0e" transform="rotate(20 110 45)"/>
+      <ellipse cx="60" cy="30" rx="42" ry="16" fill="#102c10" transform="rotate(35 60 30)"/>
+      <ellipse cx="30" cy="15" rx="35" ry="13" fill="#0c250c" transform="rotate(45 30 15)"/>
+    </svg>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(to top,var(--bg-deep) 0%,transparent 100%);pointer-events:none;"></div>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-kicker">Port of Spain &nbsp;&middot;&nbsp; Trinidad</p>
+    <h1 class="hero-title">The <em>Calabash</em><br>Garden</h1>
+    <p class="hero-sub">Private Social Club</p>
+    <p class="hero-loc">Est. 2025 &nbsp;&middot;&nbsp; Epicurian and Music Club</p>
+    <div class="hero-btns">
+      <a href="#apply" class="btn btn-solid">Apply for Membership</a>
+      <a href="#about" class="btn btn-outline">Discover the Club</a>
+    </div>
+  </div>
+  <div class="scroll-cue">Discover</div>
+</section>
+
+<hr class="rule">
+
+<!-- OVERVIEW -->
+<div id="about">
+  <div class="section fi">
+    <div class="intro">
+      <p class="sec-label">The Vision</p>
+      <h2>A garden sanctuary above the city</h2>
+      <div class="gold-rule"><span>&#10022;</span></div>
+      <p>The Calabash Garden is Port of Spain's most anticipated private members club. A retreat of lush tropical greenery, refined dining, and curated nightlife. Set within a sensitively reimagined space, the club is currently under construction and will open to founding members in December 2026. This page outlines the operational framework for a seamless, cashless member experience, and lets you apply to join.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">&#127807;</div>
+        <h4>Garden and Terraces</h4>
+        <p>Lush calabash and tropical plantings throughout all spaces, creating an immersive garden atmosphere.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#127869;</div>
+        <h4>Dining and Bar</h4>
+        <p>Signature Caribbean cuisine alongside a curated cocktail programme. All cashless for members.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#127925;</div>
+        <h4>Music and Events</h4>
+        <p>Curated live music, DJ nights, and private event hire. Exclusive to verified members and their guests.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#129002;</div>
+        <h4>Member Identity</h4>
+        <p>Each member carries a natural material membership card, bamboo or cork composite, their key to the club.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- MEMBERSHIP CARDS SECTION -->
+<div id="membership" class="section-dark">
+  <div class="section fi">
+    <p class="sec-label">Member Card Concept</p>
+    <h2>The membership card</h2>
+    <div class="gold-rule"><span>&#10022;</span></div>
+    <p class="intro" style="text-align:center;max-width:640px;">Each member receives a card crafted from sustainable natural materials, bamboo veneer, cork composite, or reclaimed hardwood, embedded with NFC and RFID technology for both venue access and payments. The physical card is the member's identity within the club.</p>
+    <div class="card-preview">
+      <div>
+        <div class="physical-card bamboo-card">
+          <div class="card-club">The Calabash Garden</div>
+          <div style="position:relative;z-index:1;"><div class="card-chip"></div></div>
+          <div class="card-bottom">
+            <div>
+              <div class="card-name">Member Name</div>
+              <div class="card-type">Founding Member &middot; Option A</div>
+            </div>
+            <div style="text-align:right;position:relative;z-index:1;">
+              <div style="font-size:.65rem;color:var(--gold);letter-spacing:.1em;">LINKED</div>
+              <div style="font-size:.55rem;color:var(--text-muted);">Credit Card</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-label">Bamboo Veneer &middot; Credit Card Linked</div>
+      </div>
+      <div>
+        <div class="physical-card rfid-card">
+          <div class="card-club">The Calabash Garden</div>
+          <div style="position:relative;z-index:1;"><div style="font-size:.7rem;color:var(--gold);letter-spacing:.15em;">&#10227; PREPAID</div></div>
+          <div class="card-bottom">
+            <div>
+              <div class="card-name">Member Name</div>
+              <div class="card-type">Founding Member &middot; Option B</div>
+            </div>
+            <div class="rfid-symbol">&#9673;</div>
+          </div>
+        </div>
+        <div class="card-label">Cork Composite &middot; RFID Prepaid</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT OPTIONS -->
+<div id="payments">
+  <div class="section fi">
+    <p class="sec-label">Cashless Payment Models</p>
+    <h2>Two approaches to a seamless night</h2>
+    <div class="gold-rule"><span>&#10022;</span></div>
+    <p class="intro" style="text-align:center;max-width:660px;">Both options remove cash from the club entirely. The choice determines how members interact with their balance, either passively, charged at exit, or actively, topped up at entry. Below is a full comparison of both models.</p>
+    <div class="cards-grid">
+      <div class="m-card">
+        <div class="m-card-num">A</div>
+        <span class="m-badge">Option A</span>
+        <h3>Linked Credit Card Tab</h3>
+        <p class="tagline">"Arrive, enjoy, leave. We settle later."</p>
+        <p>On joining, each member securely registers a credit or debit card to their account. When they arrive, a pre authorisation hold is placed. Through the evening their purchases accumulate on a running digital tab, charged in full when they exit.</p>
+        <p class="pc-heading pro">Advantages</p>
+        <ul class="pc-list">
+          <li class="pro-item">Truly frictionless. Members carry nothing extra and spend without thinking.</li>
+          <li class="pro-item">Higher average spend per visit, with no perceived budget ceiling.</li>
+          <li class="pro-item">No top up queues at the door. Straight to the bar.</li>
+          <li class="pro-item">Card details tied to real verified identity, a strong fraud deterrent.</li>
+          <li class="pro-item">Easy to track per member spend data for personalisation.</li>
+          <li class="pro-item">Members can invite guests whose tabs roll onto their account.</li>
+        </ul>
+        <p class="pc-heading con">Risks and Challenges</p>
+        <ul class="pc-list">
+          <li class="con-item">Card declines at end of night if funds or limits are hit.</li>
+          <li class="con-item">Chargebacks. Members may later dispute charges.</li>
+          <li class="con-item">Blocked or cancelled cards silently fail, with no instant alert to staff.</li>
+          <li class="con-item">Requires robust internet connectivity through the night.</li>
+          <li class="con-item">PCI DSS compliance burden for storing card tokens.</li>
+          <li class="con-item">Card swap or expired card requires the member to update in advance.</li>
+        </ul>
+        <div class="risk-box">
+          <strong>Abuse prevention strategy:</strong> place a pre authorisation hold of TTD 500 to 1,000 at entry, voided automatically if unused. Set per session spend caps configurable by the member. Require EMV chip verification at card registration. Collect a digital signature on the final bill via a member app. The membership agreement should include clear dispute resolution terms and a zero tolerance policy, where repeated chargebacks result in account suspension. Staff check card status at the door via the POS dashboard.
+        </div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-num">B</div>
+        <span class="m-badge" style="background:#8ab8d0;color:#050a05;">Option B</span>
+        <h3>RFID Prepaid Card</h3>
+        <p class="tagline">"Top up, tap, and go."</p>
+        <p>The member's natural card carries a prepaid RFID balance. They top up at the entrance kiosk, by cash, debit, WiPay QR, or card, and spend by tapping at any bar or service point. The balance is deducted in real time. Unused balance rolls over or is refunded on exit.</p>
+        <p class="pc-heading pro">Advantages</p>
+        <ul class="pc-list">
+          <li class="pro-item">Zero chargeback risk. It has already been paid for.</li>
+          <li class="pro-item">Works fully offline. The POS reader does not need internet once loaded.</li>
+          <li class="pro-item">Lightning fast transaction, a sub two second tap.</li>
+          <li class="pro-item">Revenue from breakage. Unredeemed balances become club income.</li>
+          <li class="pro-item">Members feel in control of their spend, with natural budget awareness.</li>
+          <li class="pro-item">No PCI card storage liability. Funds sit on the card, not in a card vault.</li>
+          <li class="pro-item">Guest wristbands or cards can be issued with pre loaded amounts.</li>
+        </ul>
+        <p class="pc-heading con">Risks and Challenges</p>
+        <ul class="pc-list">
+          <li class="con-item">Top up friction at entry, with queues on busy nights if kiosks are limited.</li>
+          <li class="con-item">Members may run out mid evening and need to queue again.</li>
+          <li class="con-item">A lost card means a lost balance unless linked to a member account for recovery.</li>
+          <li class="con-item">Lower average spend, as self imposed limits feel real.</li>
+          <li class="con-item">Infrastructure cost. RFID readers at every POS point.</li>
+          <li class="con-item">Card hardware and replacement cost if a physical card is damaged.</li>
+        </ul>
+        <div class="risk-box">
+          <strong>Recommended setup:</strong> link every RFID card to the member account so lost cards can be frozen and balance transferred instantly. Install two to three top up kiosks at entry, plus mobile top up via app or WhatsApp. Allow auto top up: if the balance drops below TTD 200, charge the registered card automatically. Consider a minimum load of TTD 300 at entry to reduce mid night top up trips.
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap fi">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Option A. Linked Card Tab</th><th>Option B. RFID Prepaid</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Transaction speed</td><td><span class="g">Fast, tab opened once at entry</span></td><td><span class="g">Fastest, sub two second tap anywhere</span></td></tr>
+          <tr><td>Chargeback risk</td><td><span class="r">Moderate, disputes possible post visit</span></td><td><span class="g">None, fully prepaid</span></td></tr>
+          <tr><td>Internet dependency</td><td><span class="r">High, needs live auth at close out</span></td><td><span class="g">Low, card balance is offline capable</span></td></tr>
+          <tr><td>Average spend per visit</td><td><span class="g">Higher, no perceived limit</span></td><td><span class="a">Moderate, budget conscious feel</span></td></tr>
+          <tr><td>Entry friction</td><td><span class="g">Minimal, just a membership check</span></td><td><span class="a">Moderate, top up required on entry</span></td></tr>
+          <tr><td>Card loss impact</td><td><span class="g">Low, card is linked, not value bearing</span></td><td><span class="a">Medium, recoverable if account linked</span></td></tr>
+          <tr><td>PCI compliance burden</td><td><span class="r">High, card vault must be PCI DSS Level 1</span></td><td><span class="g">Low, no raw card storage needed</span></td></tr>
+          <tr><td>Works with WiPay</td><td><span class="g">Yes, for card registration and top ups</span></td><td><span class="g">Yes, WiPay QR for top up kiosks</span></td></tr>
+          <tr><td>Breakage revenue</td><td><span class="r">None</span></td><td><span class="g">Yes, unredeemed balance is club profit</span></td></tr>
+          <tr><td>Guest payments</td><td><span class="g">Rolled into the host member tab</span></td><td><span class="g">Separate guest card issued at the door</span></td></tr>
+          <tr><td>Staff training complexity</td><td><span class="a">Moderate, tab management needed</span></td><td><span class="g">Simple, tap and done</span></td></tr>
+          <tr><td>Suitable for luxury positioning</td><td><span class="g">Yes, premium invisible payment</span></td><td><span class="g">Yes, if the card design is premium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict fi">
+      <p class="v-label">Recommended Approach</p>
+      <h3>A hybrid model, the best of both</h3>
+      <p>For a founding member luxury club in Port of Spain, the optimal approach is a <strong style="color:var(--text-light);">hybrid</strong>: issue every member an RFID natural card, which removes chargebacks and creates breakage revenue, but link it to their account so a registered credit or debit card can be used for <em>automatic top ups</em> when the balance falls low. This gives the seamlessness of Option A with the financial security of Option B. On high spend evenings a member never runs dry, the system tops up silently, while the club never faces a chargeback. All top up authorisations use WiPay or Stripe tokenisation, keeping the club PCI compliant without storing raw card numbers.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- POS SYSTEMS -->
+<div id="pos" class="section-dark">
+  <div class="section fi">
+    <p class="sec-label">Point of Sale Systems</p>
+    <h2>Recommended POS platforms for Trinidad</h2>
+    <div class="gold-rule"><span>&#10022;</span></div>
+    <p class="intro" style="text-align:center;max-width:680px;">Trinidad's payment landscape has matured significantly. WiPay is the dominant local gateway, while Stripe can be accessed via a registered US entity. Below are the POS systems best suited to a cashless members club in Port of Spain, evaluated for local compatibility, RFID support, and tab management.</p>
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="pos-rec">Top Pick, Local</div>
+        <div class="pos-name">WiPay Terminal</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <p>Trinidad's own payment gateway. WiPay offers smart POS terminals, QR code payments, and a full API. It natively processes TTD and is already integrated with Lightspeed in Trinidad via Super Technologies and Forward Multimedia. Ideal for top up kiosks at the club entrance.</p>
+        <p><strong style="color:var(--text-light);">WiPay plus Lightspeed integration</strong> is available locally, the most pragmatic stack for The Calabash Garden. WiPay handles the money, Lightspeed manages tabs, inventory, and member accounts.</p>
+        <div class="pos-tags"><span class="ptag green">TTD Native</span><span class="ptag green">Available in TT</span><span class="ptag">API, QR, Terminal</span><span class="ptag">Lightspeed Integration</span><span class="ptag blue">RFID Top Up Kiosk</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-rec">Best Full POS</div>
+        <div class="pos-name">Lightspeed Restaurant</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="e">&#9733;</span></div>
+        <p>A full hospitality POS covering bar, dining room, and events. Available in Trinidad through <em>Forward Multimedia</em> in Port of Spain. It supports table management, bar tabs, split bills, and staff access controls. WiPay integration is live, with a strong reporting dashboard for per member spend analysis.</p>
+        <p>Lightspeed supports RFID and NFC integrations via third party middleware. The best choice for the main bar and dining floor.</p>
+        <div class="pos-tags"><span class="ptag green">Available in TT</span><span class="ptag green">WiPay Compatible</span><span class="ptag">Tab Management</span><span class="ptag">Member Accounts</span><span class="ptag blue">Detailed Reporting</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-name">Square for Restaurants</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="e">&#9733;</span><span class="e">&#9733;</span></div>
+        <p>Sleek, intuitive, and free to start. Square is strong for smaller venues or satellite bars. It is not officially available in Trinidad but is accessible through a US business entity, with Stripe via a US LLC as the payment backbone. Excellent for staff onboarding and pop up bar setups during events.</p>
+        <p>Less suited as the primary POS due to limited native TTD processing, but excellent as a secondary station.</p>
+        <div class="pos-tags"><span class="ptag">Via US Entity</span><span class="ptag">Stripe Backed</span><span class="ptag blue">Free Tier Available</span><span class="ptag">Easy Training</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-name">Toast POS</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="e">&#9733;</span></div>
+        <p>The industry standard for bars and nightclubs in North America. Built specifically for high volume hospitality, with pre authorised tabs, bar side handheld ordering, and fast close out. Not natively available in Trinidad, it requires a US registered entity and Stripe as the processor.</p>
+        <p>If the club operator registers a US LLC, Toast plus Stripe becomes a viable premium option with world class tab management and chargeback protection tools.</p>
+        <div class="pos-tags"><span class="ptag">Via US Entity</span><span class="ptag">Stripe Required</span><span class="ptag blue">Pre Auth Tabs</span><span class="ptag blue">Best Bar Features</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-name">Stripe</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <p>Stripe is not officially available for TT registered businesses, but is fully accessible via a US LLC. The Stripe card vault is PCI DSS Level 1 certified, the gold standard for securely storing member card tokens. It never stores raw card numbers, only tokens are used for future charges.</p>
+        <p>Stripe Radar fraud detection uses machine learning to flag suspicious charges in real time. Strongly recommended as the <em>backend processor</em> for Option A if accessing via a US entity.</p>
+        <div class="pos-tags"><span class="ptag">Via US Entity</span><span class="ptag green">PCI DSS Level 1</span><span class="ptag green">Tokenisation</span><span class="ptag blue">Radar Fraud Detection</span><span class="ptag blue">3D Secure</span></div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-name">Epos Now</div>
+        <div class="pos-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="e">&#9733;</span><span class="e">&#9733;</span></div>
+        <p>A cloud based POS used across the Caribbean with good multi currency support. It supports WiPay as a payment integration and works on standard Android and iOS hardware, with no proprietary terminals required. Decent for bar management, though less feature rich than Lightspeed for full table service.</p>
+        <div class="pos-tags"><span class="ptag green">Caribbean Support</span><span class="ptag green">WiPay Compatible</span><span class="ptag">Cloud Based</span><span class="ptag blue">Standard Hardware</span></div>
+      </div>
+    </div>
+
+    <div class="verdict fi" style="margin-top:40px;">
+      <p class="v-label">Recommended Technology Stack</p>
+      <h3>Lightspeed plus WiPay plus Stripe Vault</h3>
+      <p><strong style="color:var(--text-light);">Primary POS:</strong> Lightspeed Restaurant, via Forward Multimedia in Port of Spain, for all bar and dining transactions. <strong style="color:var(--text-light);">Payment processing:</strong> WiPay terminal for TTD transactions, QR codes, and RFID top up kiosks at entry. <strong style="color:var(--text-light);">Card vault:</strong> Stripe, via a US LLC, for secure tokenised storage of member card details, used for auto top ups and Option A tab settlements. This stack is fully operational in Trinidad today, minimises compliance risk, and scales gracefully from launch through growth.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- SECURITY -->
+<div id="security">
+  <div class="section fi">
+    <p class="sec-label">Data and Payment Security</p>
+    <h2>Protecting member card details</h2>
+    <div class="gold-rule"><span>&#10022;</span></div>
+    <p class="intro" style="text-align:center;max-width:660px;">Storing payment card data carries significant legal and reputational responsibility. The following measures are non negotiable for a premium members club handling recurring card on file charges.</p>
+    <div class="sec-grid">
+      <div class="sec-item"><div class="sec-icon">&#128272;</div><h4>Tokenisation, Never Store Raw Cards</h4><p>Raw card numbers must never touch your servers. Use the Stripe vault or WiPay tokenisation, where members' cards are replaced with a non reversible token. If your system is ever breached, tokens are worthless to attackers.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#128737;</div><h4>PCI DSS Compliance</h4><p>Any business storing, transmitting, or processing card data must comply with the Payment Card Industry Data Security Standard. Using Stripe or WiPay as the vault provider delegates most of this obligation to them. Keep your own systems out of scope wherever possible.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#9989;</div><h4>3D Secure Authentication</h4><p>When a member first registers their card, require 3D Secure. This creates a strong evidence trail for dispute resolution and significantly reduces chargeback success rates.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#128241;</div><h4>Two Factor Authentication on Accounts</h4><p>Member accounts with saved payment methods must be protected by two factor authentication, by SMS code or an authenticator app. If an account is compromised, a fraudster cannot modify payment details without the second factor.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#128203;</div><h4>Pre Authorisation Holds</h4><p>For Option A, place a TTD 500 pre auth hold at entry. This confirms the card is live and has available credit before the night begins, catching declined cards before a tab is run up. The hold is voided on final charge.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#128276;</div><h4>Real Time Fraud Alerts</h4><p>Stripe Radar flags suspicious charge patterns automatically. Configure alerts for single transactions over TTD 2,000, multiple transactions in under ten minutes, and first time card use above TTD 500.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#128221;</div><h4>Dispute Policy in the Agreement</h4><p>The membership contract must clearly outline the club's right to charge, the pre auth policy, the digital receipt process, and the consequences for repeated chargebacks. A signed agreement is your strongest defence against friendly fraud.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#9851;</div><h4>Card Expiry Management</h4><p>Send automated reminders 45 and 14 days before a member's saved card expires. The Stripe network updater refreshes card details when banks issue replacements, reducing silent failures on charge night.</p></div>
+      <div class="sec-item"><div class="sec-icon">&#127963;</div><h4>Data Retention and Privacy</h4><p>Publish a clear privacy policy explaining what card data is stored, for how long, and how members can request deletion. Align with Trinidad's Data Protection Act. Card tokens should be deleted within 12 months of membership lapsing.</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- APPLY -->
+<div id="apply">
+  <div class="section fi">
+    <p class="sec-label" style="text-align:center;">Membership Application</p>
+    <h2 style="text-align:center;">Request an invitation</h2>
+    <div class="gold-rule"><span>&#10022;</span></div>
+    <div class="apply-wrap">
+      <div>
+        <p>Membership is by invitation and application only. Share a few details and the membership team will be in touch as founding places open ahead of our opening in December 2026.</p>
+        <ul class="apply-points">
+          <li>Founding member places are limited and reviewed in the order received.</li>
+          <li>We collect only what we need to contact you. No card details at this stage.</li>
+          <li>Your information is held privately, in line with Trinidad's Data Protection Act.</li>
+        </ul>
+      </div>
+      <div>
+        <form class="form-card" id="applyForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="firstName">First name</label><input type="text" id="firstName" name="firstName" autocomplete="given-name" required></div>
+            <div class="field"><label for="lastName">Last name</label><input type="text" id="lastName" name="lastName" autocomplete="family-name" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+            <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+1 868"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="membershipType">Membership interest</label>
+              <select id="membershipType" name="membershipType" required>
+                <option value="" selected disabled>Select one</option>
+                <option>Founding member</option>
+                <option>Individual membership</option>
+                <option>Joint or partner membership</option>
+                <option>Corporate membership</option>
+                <option>Just keep me informed</option>
+              </select>
+            </div>
+            <div class="field"><label for="referral">How did you hear of us</label><input type="text" id="referral" name="referral" placeholder="Optional"></div>
+          </div>
+          <div class="field"><label for="message">A note to the membership team</label><textarea id="message" name="message" placeholder="Optional. Tell us a little about yourself."></textarea></div>
+          <p class="form-note">By submitting, you agree to be contacted about membership. We will never share your details.</p>
+          <button type="submit" class="btn btn-solid form-submit">Submit Application</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check">&#10003;</div>
+          <h3>Thank you</h3>
+          <p id="successMsg">Your application has been received. The membership team will be in touch.</p>
+          <p style="margin-top:14px;"><a id="mailtoLink" href="#">Send a copy to the membership team by email</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">The Calabash Garden</div>
+  <p>A private members club &middot; Port of Spain, Trinidad<br>
+  Construction in progress &middot; Founding membership applications open</p>
+  <ul class="foot-links">
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#pos">Systems</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
+  <p style="margin-top:28px;font-size:.6rem;opacity:.5;letter-spacing:.1em;">Private and confidential &middot; 2026</p>
+</footer>
+
+<script>
+// Set this to the club's real inbox to route applications by email.
+var MEMBERSHIP_EMAIL = "membership@thecalabashgarden.com";
+
+// Fade-in on scroll
+var obs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fi').forEach(function (el) { obs.observe(el); });
+
+// Application form handling
+var form = document.getElementById('applyForm');
+form.addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  var ok = true;
+  form.querySelectorAll('[required]').forEach(function (f) {
+    var valid = f.value && f.value.trim() !== '';
+    if (f.type === 'email') valid = valid && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
+    f.classList.toggle('err', !valid);
+    if (!valid) ok = false;
+  });
+  if (!ok) return;
+
+  var data = {
+    Name: form.firstName.value.trim() + ' ' + form.lastName.value.trim(),
+    Email: form.email.value.trim(),
+    Phone: form.phone.value.trim(),
+    Interest: form.membershipType.value,
+    Referral: form.referral.value.trim(),
+    Note: form.message.value.trim()
+  };
+  var lines = Object.keys(data).map(function (k) { return k + ': ' + data[k]; });
+  var subject = 'Membership application, ' + data.Name;
+  var body = 'New membership application from the website.%0D%0A%0D%0A' + lines.join('%0D%0A');
+  var mailto = 'mailto:' + MEMBERSHIP_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  document.getElementById('mailtoLink').setAttribute('href', mailto);
+  document.getElementById('successMsg').textContent =
+    'Thank you, ' + form.firstName.value.trim() + '. Your application has been received. The membership team will be in touch.';
+
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
+
+</body>
+</html>
